@@ -3,6 +3,10 @@
 // that can be found in the LICENSE file at the root of the
 // Mumble source tree or at <https://www.mumble.info/LICENSE>.
 
+extern "C" {
+
 __declspec(dllexport) bool AreYouCRT() {
 	return true;
+}
+
 }

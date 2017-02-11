@@ -14,7 +14,7 @@ static void Alert(LPCWSTR title, LPCWSTR msg) {
 }
 
 // GetExecutableDirPath returns the directory that
-// mumble.exe resides in.
+// main.exe resides in.
 static const std::wstring GetExecutableDirPath() {
 	wchar_t path[MAX_PATH];
 
@@ -28,13 +28,28 @@ static const std::wstring GetExecutableDirPath() {
 	return exe_path.append(L"\\");
 }
 
+// ConfigureEnvironment prepares main.exe's environment to
+// run app.dll
+static bool ConfigureEnvironment() {
+	// Remove the current directory from the DLL search path.
+	if (!SetDllDirectoryW(L""))
+		return false;
+
+	// Uuse the directory containing main.exe as the working directory.
+	std::wstring cwd = GetExecutableDirPath();
+	if (!SetCurrentDirectoryW(cwd.c_str()))
+		return false;
+
+	return true;
+}
+
 int main(int argc, char *argv[]) {
 	std::wstring dllpath = GetExecutableDirPath();
-	dllpath.append(L"crtdir\\dummycrt.dll");
+	dllpath.append(L"crtdir\\app.dll");
 
 	HMODULE m = LoadLibraryExW(dllpath.c_str(), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 	if (m == NULL) {
-		Alert(L"Failure", L"Failed to load dummycrt.dll");
+		Alert(L"Failure", L"Failed to load app.dll");
 		return 1;
 	}
 

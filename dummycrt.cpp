@@ -3,4 +3,4 @@
 // that can be found in the LICENSE file at the root of the
 // Mumble source tree or at <https://www.mumble.info/LICENSE>.
 
-#pragma comment(linker, "/export:AreYouCRT=crtimpl.AreYouCRT")
+#pragma comment(linker, "/export:_AreYouCRT=crtimpl.AreYouCRT")

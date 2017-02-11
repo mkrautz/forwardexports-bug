@@ -15,6 +15,9 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 cl /LD /MT crtimpl.cpp
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+cl /LD /MT app.cpp dummycrt.lib
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 cl /MT /EHsc main.cpp /link /out:main.exe user32.lib shlwapi.lib
 if %errorlevel% neq 0 exit /b %errorlevel%
 
@@ -31,4 +34,7 @@ move crtimpl.dll out\crtdir
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 move dummycrt.dll out\crtdir
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+move app.dll out\crtdir
 if %errorlevel% neq 0 exit /b %errorlevel%

@@ -72,7 +72,7 @@ Here's what they do:
 - `dummycrt.dll` - Exports AreYouCRT via *Forward Export* to `crtimpl.AreYouCRT`.
 - `crtimpl.dll` - Implements `AreYouCRT`, a simple function that returns a bool and takes no arguments. Always returns true.
 
-## Results on Windows 7
+## Results on Windows 7 SP1
 
 Status: **<span style="color: red">Failure</span>**
 
@@ -92,7 +92,7 @@ An alert dialog from main.exe is shown, saying that app.dll could not be loaded:
     Failed to load app.dll
     [OK]
 
-OK -- so, loading app.dll this way doesn't work on Windows 7.
+OK -- so, loading app.dll this way doesn't work on Windows 7 SP1.
 
 Next, try copying crtimpl.dll from `crtdir`, and placing it next to `main.exe`.
 
